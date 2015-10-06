@@ -12,6 +12,8 @@ todomvc.controller('TodoCtrl', function TodoCtrl($scope, $location, $firebaseArr
 
 	// Bind the todos to the firebase provider.
 	$scope.todos = $firebaseArray(fireRef);
+
+	console.log($scope.todos);
 	$scope.newTodo = '';
 	$scope.editedTodo = null;
 
@@ -19,8 +21,10 @@ todomvc.controller('TodoCtrl', function TodoCtrl($scope, $location, $firebaseArr
 		var total = 0;
 		var remaining = 0;
 		$scope.todos.forEach(function (todo) {
+			console.log("Scope todos was iterated over")
 			// Skip invalid entries so they don't break the entire app.
-			if (!todo || !todo.title) {
+			if (!todo || !todo.client) {
+				console.log("Todo was missing or misformatted");
 				return;
 			}
 
